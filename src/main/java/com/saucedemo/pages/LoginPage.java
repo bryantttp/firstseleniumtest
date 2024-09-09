@@ -9,16 +9,26 @@ public class LoginPage extends BasePage{
     private By loginButton = By.id("login-button");
     private By errorMessage = By.xpath("#login_button_container h3");
 
-    private void setUsernameField(String username){
+    private void setUsername(String username){
         set(usernameField,username);
     }
 
-    public void setPasswordField(String password){
+    public void setPassword(String password){
         set(passwordField,password);
     }
 
-    public void clickLoginButton(){
+    public ProductsPage clickLoginButton(){
         click(loginButton);
+        return new ProductsPage();
     }
 
+    public ProductsPage logIntoApplication(String username, String password){
+        setUsername(username);
+        setPassword(password);
+        return clickLoginButton();
+    }
+
+    public String getErrorMessages(){
+        return find(errorMessage).getText();
+    }
 }
